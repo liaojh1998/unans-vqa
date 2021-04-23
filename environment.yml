@@ -1,0 +1,9 @@
+name: unans
+channels:
+  - defaults
+dependencies:
+  - _libgcc_mutex=0.1=main
+  - cudatoolkit=10.2.89=hfd86e86_1
+  - libgcc-ng=9.1.0=hdf63c60_0
+  - libstdcxx-ng=9.1.0=hdf63c60_0
+  - numpy=1.19.5
