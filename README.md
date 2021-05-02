@@ -2,8 +2,44 @@
 
 CS395T GNLP Project by Jay Liao and Ryo Kamoi
 
+## Installation on UT Condor
+*With the courtesy of [Bill Yang](https://github.com/billyang98) and his setup information on [GitHub](https://github.com/billyang98/UNITER). The following information, instruction, scripts, and code are all based on his repository's information.*
+
+One way to download images on UT is to use the `singularity` package that's already installed in `/lusr`. To start off, make sure the following `PATH` is defined in your `.bashrc` or `.profile` to be able to load `singularity`:
+
+```
+PATH=${PATH}:/lusr/opt/singularity-3.2.1/bin
+```
+
+Restart your `bash` and run `singularity` to check. Then, run the following script with your CS login to build Chen's Docker image:
+
+```
+./scripts/condor/set_up_singularity.sh <your cs login>
+```
+
+By default, running the script will build the 2 images, one UNITER and one that UNITER use to preprocess images. These are saved to `/scratch/cluster/<your cs login>/uniter` and `/scratch/cluster/<your cs login>/uniter_butd` respectively. Then, we can start a container with:
+
+```
+singularity exec -B <UNITER REPO PATH>:/mnt/UNITER,<DATA PATH>:/mnt/data -w /scratch/cluster/<your cs login>/uniter bash
+```
+
+Notes:
+- `-B` binds paths in your image when you run it.
+- `-w` makes the image writeable.
+
+## Download and Preprocess
+
+To get the datasets used for VizWiz and UNITER's pre-trained `base` and `large`, simply run:
+```
+./scripts/download.sh
+```
+
+Then, we can use the images we downloaded to preprocess the datasets by running:
+```
+./scripts/condor/condorizer -j unans_preprocess --highgpu -- ./scripts/condor/prepro_vizwiz.sh <your cs login>
+```
+
 ## TODOs
-- Setup environment
 - Preprocess VizWiz dataset into binary classification task for unanswerability
 - Test out UNITER on VizWiz dataset
 
