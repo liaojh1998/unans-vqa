@@ -39,6 +39,10 @@ Then, we can use the images we downloaded to preprocess the datasets by running:
 ./scripts/condor/condorizer -j unans_preprocess --highgpu -- ./scripts/condor/prepro_vizwiz.sh <your cs login>
 ```
 
+Some things to note during preprocessing:
+- Occasionally, the GPU will run out of memory during preprocessing because the model and code is old. On encountering `Check failed: error == cudaSuccess (2 vs. 0)  out of memory`, just rerun the script. The code will skip the preprocessing that's already done.
+- When encountering `Check failed: error == cudaSuccess (9 vs. 0)  invalid configuration argument`, this may be due to an image having not enough bytes (which is a useless image). This happened with `VizWiz_train_00022628.jpg` and no question used it, so the image was just removed.
+
 ## TODOs
 - Preprocess VizWiz dataset into binary classification task for unanswerability
 - Test out UNITER on VizWiz dataset
