@@ -44,8 +44,9 @@ Some things to note during preprocessing:
 - When encountering `Check failed: error == cudaSuccess (9 vs. 0)  invalid configuration argument`, this may be due to an image having not enough bytes (which is a useless image). This happened with `VizWiz_train_00022628.jpg` and no question used it, so the image was just removed.
 
 ## TODOs
-- Preprocess VizWiz dataset into binary classification task for unanswerability
-- Test out UNITER on VizWiz dataset
+- Implement `inf_unans.py` from `inf_vqa.py`.
+- Download VQA 2.0 and implement random swapping, then pre-process.
+- Download QPRE and pre-process.
 
 ## Datasets
 - Danna Gurari, Qing Li, Abigale J. Stangl, Anhong Guo, Chi Lin, Kristen Grauman, Jiebo Luo, and Jeffrey P. Bigham. [VizWiz Grand Challenge: Answering Visual Questions from Blind People.](https://arxiv.org/abs/1802.08218) IEEE Conference on Computer Vision and Pattern Recognition (CVPR), 2018.
