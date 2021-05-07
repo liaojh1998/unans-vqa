@@ -1,11 +1,16 @@
 #!/bin/bash
 
+set -ex
+
 mkdir -p data/
-cd data/
+
+# download UNITER
+mkdir -p data/uniter
+./UNITER/scripts/download_pretrained.sh data/uniter
 
 # download VizWiz
-mkdir -p vizwiz
-cd vizwiz
+mkdir -p data/vizwiz
+cd data/vizwiz
 wget https://ivc.ischool.utexas.edu/VizWiz_final/images/train.zip
 wget https://ivc.ischool.utexas.edu/VizWiz_final/images/val.zip
 wget https://ivc.ischool.utexas.edu/VizWiz_final/images/test.zip
@@ -18,7 +23,7 @@ rm train.zip
 rm val.zip
 rm test.zip
 rm Annotations.zip
-cd ..
+cd ../..
 
 # TODO: download QRPE dataset
 # TODO: download VQA 2.0 (if needed)
